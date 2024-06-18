@@ -25,6 +25,6 @@ const PORT=process.env.PORT||4000;
      .then(()=>console.log('MongoDB connected Successfully!!!'))
      .catch((error)=>console.log(error))
 
-
+ app.use('/',(req,res)=> res.send("<h1>Welcome to HungryHub"))
 
  app.listen(PORT,()=>console.log(`server started and running at ${PORT}`));// to start the server
