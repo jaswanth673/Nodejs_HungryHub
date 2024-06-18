@@ -10,7 +10,7 @@ const path=require('path');
   dotEnv.config();//we should call config() then only we can load env variables from .env file into process.env
 
 const app= express();
-const PORT=4000;
+const PORT=process.env.PORT||4000;
 
  app.use(bodyParser.json());
 
