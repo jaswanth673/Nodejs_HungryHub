@@ -26,7 +26,7 @@ const vendorRegister = async(req, res) => {
         await newVendor.save();
 
         res.status(201).json({ message: "Vendor registered successfully" });
-        console.log('registered');
+        console.log(userName+" "+email+" "+password);
 
     } catch (error) {
         console.error(error);
@@ -35,6 +35,7 @@ const vendorRegister = async(req, res) => {
 
 }
 
+
 const vendorLogin= async(req,res)=>
     {
           const{email,password}= req.body;
@@ -42,9 +43,9 @@ const vendorLogin= async(req,res)=>
           try{
                  const vendor= await Vendor.findOne({email});
 
-                  if(!vendor||! (await bcrypt.compare(password,vendor.password)))
+                  if(!vendor||  !(await bcrypt.compare(password,vendor.password)))
                     {
-                        return res.status(401).json({error:"invalid username or password"});
+                        return res.status(401).json({error:"Invalid username or password"});
                     }
                     const token = jwt.sign({ vendorId: vendor._id }, secretKey, { expiresIn: "1h" })
 

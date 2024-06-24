@@ -23,7 +23,7 @@ const firmSchema= new mongoose.Schema({
         ]
      },
      offer:{type:String},
-     image:{type:String,},
+     image:{type:String},
      vendor:[
         {
             type:mongoose.Schema.Types.ObjectId,

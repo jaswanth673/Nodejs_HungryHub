@@ -5,11 +5,12 @@ const bodyParser=require('body-parser');
 const vendorRoutes=require('./routes/vendorRoutes');
 const firmRoutes=require('./routes/firmRoutes');
 const productRoutes=require('./routes/productRoutes');
-const corse=require('cors');
+const cors=require('cors');
 const path=require('path');
   dotEnv.config();//we should call config() then only we can load env variables from .env file into process.env
-
+  
 const app= express();
+app.use(cors());
 const PORT=process.env.PORT||4000;
 
  app.use(bodyParser.json());
@@ -19,6 +20,8 @@ const PORT=process.env.PORT||4000;
  app.use('/firm',firmRoutes);
 
  app.use('/product',productRoutes);
+
+ 
   
   app.use('/uploads',express.static('uploads'));
     mongoose.connect(process.env.MONGO_URI)
