@@ -26,7 +26,7 @@ const vendorRegister = async(req, res) => {
         await newVendor.save();
 
         res.status(201).json({ message: "Vendor registered successfully" });
-        console.log(userName+" "+email+" "+password);
+       
 
     } catch (error) {
         console.error(error);
@@ -88,8 +88,9 @@ const getVendorById =  async(req,res)=>
                             {
                                 return res.status(400).json({error:"vendor not found"});
                             }
-
-                             res.json({vendor});
+                            const vendorFirmId = vendor.firm[0]._id;
+                     res.status(200).json({ vendorId, vendorFirmId, vendor })
+                       console.log(vendorFirmId);
              }
              catch(error)
              {
